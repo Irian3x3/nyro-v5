@@ -1,0 +1,18 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2019",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "alwaysStrict": true,
+    "outDir": "build",
+    "experimentalDecorators": true,
+    "skipDefaultLibCheck": true,
+    "paths": {
+      "#core": ["/build/core"]
+    },
+    "baseUrl": "/build/"
+  }
+}

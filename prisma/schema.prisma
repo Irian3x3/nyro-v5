@@ -1,0 +1,29 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Guild {
+  id   String @id
+  data String @default("{}")
+
+  @@map("guild")
+}
+
+model Tags {
+  guild     String
+  name      String
+  content   String
+  author    String
+  createdat DateTime @default(now())
+  uses      Int      @default(0)
+  editedat  DateTime @default(now())
+  editedby  String
+
+  @@map("tags")
+  @@id([guild, name])
+}
