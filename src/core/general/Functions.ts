@@ -43,3 +43,15 @@ export const paginate = (arr: any[], itemsPerPage = 10, page = 1) => {
     items: arr.slice((page - 1) * itemsPerPage, page * itemsPerPage),
   };
 };
+
+
+export const trimArray = (array: any[], size = 15) => {
+  if (array.length > size) {
+    const length = array.length;
+    array = array.slice(0, size);
+    array.push(`and ${length} more...`);
+  }
+
+  return array;
+};
+
