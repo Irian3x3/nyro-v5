@@ -36,16 +36,10 @@ export default class TagCommand extends Command {
       );
 
     tag.content = content;
-
-    await prisma.tags.update({
-      where: {
-        guild_name: {
-          guild: tag.guild,
-          name: tag.name,
-        },
-      },
-      data: tag,
-    });
+    tag.createdat = tag.createdat;
+    tag.editedat = new Date(Date.now());
+    tag.editedby = message.author.id;
+    await tag.save();
 
     return message.util.send(
       new MessageEmbed()
