@@ -35,7 +35,7 @@ export default class TagCommand extends Command {
     const res = stringify({
       requester: `${message.author.tag} (${message.author.id})`,
       date: new Date().toLocaleDateString(),
-      tags: data,
+      tags: data.map((tag) => tag.json()),
     });
 
     return message.util.send(
