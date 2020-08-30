@@ -1,7 +1,6 @@
 import { Model } from "../Model";
-import { Column, InitModel } from "../../";
+import { Column } from "../../";
 
-@InitModel("guild")
 export class Guild extends Model {
   @Column({ primary: true, nullable: false })
   public id: string;
