@@ -73,11 +73,3 @@ export const Column = (options: ColumnOptions = {}) => {
     target.constructor.columns.set(name, options);
   };
 };
-
-export const InitModel = (name: string) => {
-  return function (constructor: Function) {
-    //@ts-ignore
-    constructor.tagName = name;
-    constructor.prototype.modelName = name;
-  };
-};
