@@ -15,16 +15,7 @@ export default class TagCommand extends Command {
     if (!tag) return;
 
     tag.uses += 1;
-
-    await prisma.tags.update({
-      where: {
-        guild_name: {
-          guild: tag.guild,
-          name: tag.name,
-        },
-      },
-      data: tag,
-    });
+    await tag.save();
 
     return message.util.send(
       Util.cleanContent(tag.content || "No tag content.", message).substring(
