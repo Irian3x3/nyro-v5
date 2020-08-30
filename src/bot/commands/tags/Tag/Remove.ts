@@ -25,14 +25,7 @@ export default class TagCommand extends Command {
           .setDescription(`You cannot remove someone elses tag!`)
       );
 
-    await prisma.tags.delete({
-      where: {
-        guild_name: {
-          guild: tag.guild,
-          name: tag.name,
-        },
-      },
-    });
+    await tag.delete();
 
     return message.util.send(
       new MessageEmbed()
