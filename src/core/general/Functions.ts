@@ -47,7 +47,7 @@ export const paginate = (arr: any[], itemsPerPage = 10, page = 1) => {
 
 export const trimArray = (array: any[], size = 15) => {
   if (array.length > size) {
-    const length = array.length;
+    const length = array.length - size - 1;
     array = array.slice(0, size);
     array.push(`and ${length} more...`);
   }
