@@ -4,14 +4,9 @@ import { Event } from "#core";
 
 @Event("executed", { event: "commandFinished", emitter: "commands" })
 export default class CommandExecuted extends Listener {
-  public exec(message: Message, command: Command, args: any) {
-    const arg =
-      Object.keys(args).length > 1
-        ? Object.keys(args).map((key) => args[key])
-        : "none";
-
+  public exec(message: Message, command: Command) {
     this.client.logger.info(
-      `${message.author.tag} (${message.author.id}) executed the command ${command} with arguments ${arg}`
+      `${message.author.tag} (${message.author.id}) executed the command ${command}`
     );
   }
 }
