@@ -20,3 +20,14 @@ CREATE TABLE public.economy (
 	wallet int NULL DEFAULT 0,
 	bank int NULL DEFAULT 0
 );
+
+CREATE TABLE public.moderation (
+	guild text NULL,
+	"user" text NULL,
+	moderator text NULL,
+	"case" int NULL,
+	"type" text NULL,
+	duration int NULL,
+	reason text NULL,
+	"date" date NULL DEFAULT now()
+);
