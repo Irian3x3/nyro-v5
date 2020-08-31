@@ -18,6 +18,7 @@ import { PublicCommand } from "#core";
       },
     },
   ],
+  cooldown: 120000,
   channel: "guild",
 })
 export default class RobCommand extends Command {
