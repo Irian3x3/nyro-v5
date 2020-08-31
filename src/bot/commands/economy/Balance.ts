@@ -15,10 +15,18 @@ import { PublicCommand } from "#core";
       default: (m: Message) => m.member,
     },
   ],
+  channel: "guild",
 })
 export default class BalanceCommand extends Command {
   public async exec(message: Message, { member }: { member: GuildMember }) {
-    const data = await message.member.economy();
+    if (member.user.bot)
+      return message.util.send(
+        new MessageEmbed()
+          .setColor("#f55e53")
+          .setDescription(`Bots cannot have money. That's not until 2049.`)
+      );
+
+    const data = await member.economy();
 
     return message.util.send(
       new MessageEmbed()
