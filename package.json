@@ -3,15 +3,15 @@
   "version": "5.0.0",
   "description": "v5 of Nyro",
   "main": "./build/Nyro.js",
-  "repository": "https://github.com/n/a",
+  "repository": "https://github.com/Sxmurai/nyro-v5/",
   "author": "Nyro Developments",
   "scripts": {
     "build": "yarn postinstall && tsc && clear && pm2 restart Nyro && clear && pm2 logs Nyro",
     "postinstall": "npx link-module-alias",
     "test": "yarn postinstall && clear && tsc && node ."
   },
-  "license": "MIT",
-  "private": true,
+  "license": "GPL-3.0",
+  "private": false,
   "_moduleAliases": {
     "#core": "build/core"
   },
