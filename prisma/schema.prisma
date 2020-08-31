@@ -37,3 +37,25 @@ model Economy {
   @@map("economy")
   @@id([user, guild])
 }
+
+model Moderation {
+  guild     String
+  user      String
+  moderator String
+  case      Int
+  type      InfractionTypes
+  duration  Int
+  reason    String
+  date      DateTime        @default(now())
+
+  @@map("moderation")
+  @@id([guild, case])
+}
+
+enum InfractionTypes {
+  warn
+  mute
+  kick
+  ban
+  role
+}
