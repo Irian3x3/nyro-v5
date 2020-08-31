@@ -6,7 +6,7 @@ import fetch from "node-fetch";
 @PublicCommand("metar", {
   aliases: ["metar"],
   description: {
-    content: "Displays weather conditions of an airline",
+    content: "Displays weather conditions of an airport",
     usage: "[airport]",
   },
   args: [
@@ -48,20 +48,20 @@ export default class MetarCommand extends Command {
         )
         .setDescription([
           `Flight Category: ${data.flight_category}\n`,
-          `?? Wind: ${data.wind.degrees}� - ${data.wind.speed_mph} MPH (${data.wind.speed_kph} KPH)`,
-          `??? Temperature ${data.temperature.fahrenheit}� F (${data.temperature.celsius}� C)`,
-          `??? Location: ${
+          `💨 Wind: ${data.wind.degrees}° - ${data.wind.speed_mph} MPH (${data.wind.speed_kph} KPH)`,
+          `🌡️ Temperature ${data.temperature.fahrenheit}° F (${data.temperature.celsius}° C)`,
+          `🗺️ Location: ${
             data.location.coordinates.length
               ? data.location.coordinates.map((c) => c).join(", ")
               : "Unknown"
           }`,
-          `?? Dewpoint: ${data.dewpoint.fahrenheit}� F (${data.dewpoint.celsius}� C)`,
-          `? Humidity: ${
+          `💧 Dewpoint: ${data.dewpoint.fahrenheit}° F (${data.dewpoint.celsius}° C)`,
+          `☔ Humidity: ${
             data.humidity.percent ? `${data.humidity.percent}%` : "Unknown"
           }`,
-          `?? Barometer: ${data.barometer.hg}HG (${data.barometer.hpa}HPA)`,
-          `??? Visibility: ${data.visibility.miles}mi (${data.visibility.meters}m)`,
-          `? Clouds: \n${
+          `📈 Barometer: ${data.barometer.hg}HG (${data.barometer.hpa}HPA)`,
+          `👁️ Visibility: ${data.visibility.miles}mi (${data.visibility.meters}m)`,
+          `☁ Clouds: \n${
             data.clouds.length
               ? data.clouds
                   .map(
@@ -73,7 +73,7 @@ export default class MetarCommand extends Command {
                   .join("\n")
               : "No data"
           }`,
-          `\n?? Raw: \n\`${data.raw_text}\``,
+          `\n📋 Raw: \n\`${data.raw_text}\``,
         ])
         .setFooter(
           `Last observed on ${new Date(data.observed).toLocaleString()}`
