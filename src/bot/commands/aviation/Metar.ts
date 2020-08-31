@@ -15,7 +15,7 @@ import fetch from "node-fetch";
       match: "content",
       prompt: {
         start:
-          "Please provide an [airplane ICAO code](https://en.wikipedia.org/wiki/List_of_airline_codes)",
+          "Please provide an [airplane ICAO code](https://en.m.wikipedia.org/wiki/ICAO_airport_code)",
       },
     },
   ],
