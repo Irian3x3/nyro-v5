@@ -7,6 +7,8 @@ import {
   ArgumentGenerator,
 } from "discord-akairo";
 
+import { APIOptions, API } from ".";
+
 export const PublicCommand = (id: string, options: CommandOptions) => {
   return <T extends new (...args: any[]) => Command>(target: T): T => {
     return class extends target {
@@ -71,5 +73,16 @@ export const Column = (options: ColumnOptions = {}) => {
       target.constructor.columns ?? new Map<string, any>();
 
     target.constructor.columns.set(name, options);
+  };
+};
+
+export const Api = (options: APIOptions) => {
+  return <T extends new (...args: any[]) => API>(target: T): T => {
+    return class extends target {
+      constructor(...args: any[]) {
+        super(options);
+        void args;
+      }
+    };
   };
 };
