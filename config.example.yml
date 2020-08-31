@@ -1,0 +1,8 @@
+bot:
+  token: 
+  prefixes: [nc!]
+  owners: []
+
+apis:
+  metar: 
+  youtube: 
