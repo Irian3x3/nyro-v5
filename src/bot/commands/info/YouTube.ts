@@ -51,7 +51,6 @@ export default class YouTubeCommand extends Command {
     if (!items[page - 1]) page = 1;
 
     const item = items[page - 1];
-    console.log(item);
     const type = item.id.kind.split("youtube#")[1];
 
     return message.util.send(
