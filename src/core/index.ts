@@ -14,7 +14,7 @@ import "discord.js";
 
 import { PrismaClient } from "@prisma/client";
 import { Logger } from "@melike2d/logger";
-import { Configuration, GuildProvider, Economy } from ".";
+import { Configuration, GuildProvider, ApiHandler } from ".";
 
 declare global {
   const prisma: PrismaClient;
@@ -35,6 +35,7 @@ declare module "discord-akairo" {
     settings: GuildProvider;
     opts: NyroOptions;
     version: string;
+    apis: ApiHandler;
   }
 }
 
