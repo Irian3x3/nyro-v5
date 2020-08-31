@@ -13,3 +13,10 @@ CREATE TABLE public.tags (
 	editedat date NULL DEFAULT now(),
 	editedby text NULL
 );
+
+CREATE TABLE public.economy (
+	"user" text PRIMARY NULL,
+	guild text NULL,
+	wallet int NULL DEFAULT 0,
+	bank int NULL DEFAULT 0
+);
