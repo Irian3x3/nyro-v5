@@ -27,3 +27,13 @@ model Tags {
   @@map("tags")
   @@id([guild, name])
 }
+
+model Economy {
+  user   String
+  guild  String
+  wallet Int    @default(0)
+  bank   Int    @default(0)
+
+  @@map("economy")
+  @@id([user, guild])
+}
