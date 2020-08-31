@@ -1,12 +1,10 @@
-import { Message, MessageEmbed, TextChannel, DMChannel } from "discord.js";
+import { Message, MessageEmbed, GuildChannel, TextChannel } from "discord.js";
 import { Listener } from "discord-akairo";
 import { Event } from "#core";
 
 @Event("channelCreate", { event: "channelCreate", emitter: "client" })
 export default class ChannelCreate extends Listener {
-  public async exec(channel: TextChannel | DMChannel) {
-    if (channel.type === "dm" || !channel.guild) return;
-
+  public async exec(channel: GuildChannel) {
     const audit: string = this.client.settings.get(
       channel.guild.id,
       "logs.audit"
@@ -28,7 +26,9 @@ export default class ChannelCreate extends Listener {
       new MessageEmbed()
         .setTitle(
           `${this.client.emojis.cache.get(
-            "750122317954154617"
+            channel.type === "voice"
+              ? "750141142695149739"
+              : "750122317954154617"
           )} Channel Created`
         )
         .setColor("#42f590")
