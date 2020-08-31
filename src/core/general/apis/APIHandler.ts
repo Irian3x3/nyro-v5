@@ -15,7 +15,7 @@ export class ApiHandler extends Map<string, any> {
 
   public loadAll() {
     for (const file of this.read(this.path)) {
-      const mod = new (require(join(process.cwd(), file)))();
+      const mod = new (require(join(process.cwd(), file)).default)();
 
       this.set(mod.options.name, mod);
     }
