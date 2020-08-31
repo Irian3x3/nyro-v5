@@ -10,10 +10,11 @@ export interface NyroOptions {
 }
 
 import "discord-akairo";
+import "discord.js";
 
 import { PrismaClient } from "@prisma/client";
 import { Logger } from "@melike2d/logger";
-import { Configuration, GuildProvider } from ".";
+import { Configuration, GuildProvider, Economy } from ".";
 
 declare global {
   const prisma: PrismaClient;
@@ -21,6 +22,7 @@ declare global {
 
   interface String {
     capitalise: () => string;
+    shorten: (size?: number) => string;
   }
 }
 
@@ -36,6 +38,16 @@ declare module "discord-akairo" {
   }
 }
 
+declare module "discord.js" {
+  interface GuildMember {
+    economy<t>();
+  }
+}
+
 String.prototype.capitalise = function () {
   return this.replace(/(\b\w)/gi, (str: string) => str.toUpperCase());
+};
+
+String.prototype.shorten = function (size = 45) {
+  return this.length > size ? `${this.substring(0, size)}..` : this;
 };
