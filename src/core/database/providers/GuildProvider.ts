@@ -22,7 +22,7 @@ export class GuildProvider {
       this.data.set(id, JSON.parse(data));
   }
 
-  public get<t>(guild: Server | string, path: string, defaultValue: any): t {
+  public get<t>(guild: Server | string, path: string, defaultValue?: any): t {
     const item = this.data.get(GuildProvider.id(guild)) ?? defaults;
     return get<t>(item, path) ?? defaultValue;
   }
