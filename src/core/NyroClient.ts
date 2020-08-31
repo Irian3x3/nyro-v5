@@ -4,7 +4,7 @@ import {
   ListenerHandler,
   Flag,
 } from "discord-akairo";
-import { GuildProvider, NyroOptions, Tags } from ".";
+import { GuildProvider, NyroOptions, Tags, ApiHandler } from ".";
 import { MessageEmbed } from "discord.js";
 import { Logger } from "@melike2d/logger";
 import { join } from "path";
@@ -15,6 +15,10 @@ export class Nyro extends AkairoClient {
     require(process.cwd() + "/package.json").version
   } Developer Build`;
   public logger = new Logger("bot");
+
+  public apis: ApiHandler = new ApiHandler(
+    join(this.opts.outDir, "bot", "apis")
+  );
 
   public constructor(public opts: NyroOptions) {
     super({
@@ -110,6 +114,7 @@ export class Nyro extends AkairoClient {
 
     this.events.loadAll();
     this.commands.loadAll();
+    this.apis.loadAll();
 
     return this.login(this.opts.token);
   }
