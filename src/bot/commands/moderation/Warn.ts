@@ -7,6 +7,7 @@ import { ModerationCommand, Moderation } from "#core";
   description: {
     content: "Warn a member for being bad",
     usage: "[member] [?reason]",
+    examples: ["@aesthetical", "@aesthetical Saying the heck word"],
   },
   args: [
     {
