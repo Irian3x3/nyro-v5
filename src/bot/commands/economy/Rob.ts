@@ -7,6 +7,7 @@ import { PublicCommand } from "#core";
   description: {
     content: "Not really worth it, but hey It may bail you out of a situation",
     usage: "[member]",
+    examples: ["@aesthetical"],
   },
   args: [
     {
