@@ -8,6 +8,7 @@ import ms from "ms";
   description: {
     content: "Searches spotify for a provided track name.",
     usage: "[name]",
+    examples: ["Blueberry Faygo"],
   },
   args: [
     {
