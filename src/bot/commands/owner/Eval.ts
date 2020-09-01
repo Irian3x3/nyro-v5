@@ -6,7 +6,14 @@ import { inspect } from "util";
 
 @OwnerCommand("eval", {
   aliases: ["eval"],
-  description: { content: "Evals stuff", usage: "[code] <depth>" },
+  description: {
+    content: "Evals stuff",
+    usage: "[code] <-depth>",
+    examples: [
+      "this.client.users.cache.get(message.author.id)",
+      "process.env -depth 1",
+    ],
+  },
   args: [
     {
       id: "text",
