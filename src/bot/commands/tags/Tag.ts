@@ -7,6 +7,15 @@ import { Command, Flag } from "discord-akairo";
     content: "Configures tags",
     usage:
       "[?create, add|remove, rm, delete, del|show|download|info, information|edit]",
+    examples: [
+      "create math 2 + 2 is 4, minus 1 thats 3 quik mafs",
+      "remove math",
+      "show math",
+      "edit math 2 + 2 = fish",
+      "download",
+      "download @aestheticl",
+      "info @aesthetical",
+    ],
   },
   channel: "guild",
 })
