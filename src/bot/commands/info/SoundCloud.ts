@@ -8,6 +8,7 @@ import ms from "ms";
   description: {
     content: "Searches SoundCloud for the track searched.",
     usage: "[name]",
+    examples: ["Josh A - So Tired"],
   },
   args: [
     {
