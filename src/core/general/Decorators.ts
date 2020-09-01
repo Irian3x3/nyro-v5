@@ -47,6 +47,22 @@ export const SubCommand = (id: string, arg?: ArgumentOptions[]) => {
   };
 };
 
+export const ModerationCommand = (id: string, options: CommandOptions) => {
+  options.category = options.category ?? "moderation";
+  options.channel = options.channel ?? "guild";
+  options.cooldown = options.cooldown ?? 8500;
+  options.ratelimit = options.ratelimit ?? 2;
+
+  return <T extends new (...args: any[]) => Command>(target: T): T => {
+    return class extends target {
+      constructor(...args: any[]) {
+        super(id, options);
+        void args;
+      }
+    };
+  };
+};
+
 export const Event = (id: string, options: ListenerOptions) => {
   return <T extends new (...args: any[]) => Listener>(target: T): T => {
     return class extends target {
