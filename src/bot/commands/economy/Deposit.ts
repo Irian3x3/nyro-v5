@@ -4,7 +4,11 @@ import { PublicCommand } from "#core";
 
 @PublicCommand("deposit", {
   aliases: ["deposit"],
-  description: { content: "Puts money into the bank", usage: "[amount]" },
+  description: {
+    content: "Puts money into the bank",
+    usage: "[amount]",
+    examples: ["20"],
+  },
   args: [
     {
       id: "amount",
