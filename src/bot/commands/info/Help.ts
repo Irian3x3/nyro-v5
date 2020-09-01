@@ -4,7 +4,11 @@ import { PublicCommand } from "#core";
 
 @PublicCommand("help", {
   aliases: ["help", "commands"],
-  description: { content: "Displays the commands", usage: "[?command]" },
+  description: {
+    content: "Displays the commands",
+    usage: "[?command]",
+    examples: ["", "whois"],
+  },
   args: [
     {
       id: "command",
@@ -47,10 +51,23 @@ export default class HelpCommand extends Command {
       )
       .setDescription([
         command.description.content ?? `No command description for ${command}.`,
-        `\n**Usage**: ${prefix[0]}${command} ${
+        `\n**Usage**:\n${prefix[0]}${command} ${
           command.description.usage ?? ""
         }`,
-      ]);
+      ])
+      .setFooter(`[] = Required, [?<arg>] = Optional`);
+
+    if (
+      command.description.examples &&
+      Array.isArray(command.description.examples) &&
+      command.description.examples.length
+    )
+      embed.addField(
+        `• Examples`,
+        command.description.examples.map(
+          (example) => `\`${prefix[0]}${command} ${example}\``
+        ) ?? "None"
+      );
 
     return message.util.send(embed);
   }
