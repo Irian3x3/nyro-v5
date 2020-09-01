@@ -61,12 +61,12 @@ export default class HelpCommand extends Command {
         "flag",
         ...(this.client.ownerID.includes(message.author.id) || !message.guild
           ? []
-          : message.member.hasPermission("MANAGE_GUILD", {
+          : message.member.hasPermission("MANAGE_MESSAGES", {
               checkAdmin: true,
               checkOwner: true,
             })
           ? ["owner", "flag"]
-          : ["flag", "owner", "settings"]),
+          : ["flag", "owner", "settings", "moderation"]),
       ].includes(c.id);
   }
 }
