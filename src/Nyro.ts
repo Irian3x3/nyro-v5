@@ -3,6 +3,9 @@ import "module-alias/register";
 import { Configuration, Nyro } from "./core";
 import { PrismaClient } from "@prisma/client";
 
+import "./core/extensions/Member";
+import "./core/extensions/User";
+
 (global as any).prisma = new PrismaClient({
   errorFormat: "pretty",
 });
