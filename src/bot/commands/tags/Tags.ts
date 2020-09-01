@@ -4,7 +4,11 @@ import { Command } from "discord-akairo";
 
 @PublicCommand("tags", {
   aliases: ["tags"],
-  description: { content: "Displays all of the guilds tags." },
+  description: {
+    content: "Displays all of the guilds tags.",
+    usage: "[?page]",
+    examples: ["", "2"],
+  },
   channel: "guild",
   args: [
     {
