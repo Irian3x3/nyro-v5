@@ -8,6 +8,15 @@ import { ModerationCommand } from "#core";
     content: "Manages cases in your guild",
     usage:
       "[reason, edit|del, delete, remove, rm|info, information|all] ...args",
+    examples: [
+      "reason 2 New reason",
+      "delete 2",
+      "info 2",
+      "all",
+      "all @Member",
+      "all member 2",
+      "all 34287398483303 -type warn, ban",
+    ],
   },
   userPermissions: ["MANAGE_GUILD"],
 })
