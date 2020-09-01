@@ -7,6 +7,7 @@ import { PublicCommand, Slots } from "#core";
   description: {
     content: "Give the slot machine a little spin, maybe it might pay off",
     usage: "[amount]",
+    examples: ["550"],
   },
   cooldown: 120000,
   channel: "guild",
@@ -46,7 +47,7 @@ export default class SlotsCommand extends Command {
               message.author.displayAvatarURL({ dynamic: true })
             )
             .setDescription(board)
-            .setFooter(`You won ${amount}¤!`)
+            .setFooter(`You won ${amount}Â¤!`)
         );
 
       case 1:
@@ -61,7 +62,7 @@ export default class SlotsCommand extends Command {
               message.author.displayAvatarURL({ dynamic: true })
             )
             .setDescription(board)
-            .setFooter(`You lost ${amount}¤.`)
+            .setFooter(`You lost ${amount}Â¤.`)
         );
 
       case 2:
@@ -76,7 +77,7 @@ export default class SlotsCommand extends Command {
               message.author.displayAvatarURL({ dynamic: true })
             )
             .setDescription(board)
-            .setFooter(`You won 10k¤`)
+            .setFooter(`You won 10kÂ¤`)
         );
     }
   }
