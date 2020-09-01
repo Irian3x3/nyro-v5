@@ -8,6 +8,7 @@ import fetch from "node-fetch";
   description: {
     content: "Displays weather conditions of an airport",
     usage: "[airport]",
+    examples: ["ljlj"],
   },
   args: [
     {
@@ -15,7 +16,7 @@ import fetch from "node-fetch";
       match: "content",
       prompt: {
         start:
-          "Please provide an [airplane ICAO code](https://en.m.wikipedia.org/wiki/ICAO_airport_code)",
+          "Please provide an [airport ICAO code](https://en.m.wikipedia.org/wiki/ICAO_airport_code)",
       },
     },
   ],
@@ -48,7 +49,7 @@ export default class MetarCommand extends Command {
         )
         .setDescription([
           `Flight Category: ${data.flight_category}\n`,
-          `💨 Wind: ${data.wind.degrees}° - ${data.wind.speed_mph} MPH (${data.wind.speed_kph} KPH)`,
+          `💨 Wind: ${data.wind.degrees}° - ${data.wind.speed_mph} MPH (${data.wind.speed_kph} KPH) (${data.wind.speed_kts} KTS)`,
           `🌡️ Temperature ${data.temperature.fahrenheit}° F (${data.temperature.celsius}° C)`,
           `🗺️ Location: ${
             data.location.coordinates.length
