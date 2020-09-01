@@ -1,12 +1,18 @@
 import { Message, MessageEmbed, GuildMember, TextChannel } from "discord.js";
 import { Command, Argument } from "discord-akairo";
-import { ModerationCommand, Moderation } from "#core";
+import { ModerationCommand } from "#core";
 
 @ModerationCommand("purge", {
   aliases: ["purge", "clear"],
   description: {
     content: "Clears messages",
     usage: "[amount] [?@member &?channel]",
+    examples: [
+      "2",
+      "2 @aesthetical",
+      "65 #media",
+      "24 @aesthetical #staff-chat",
+    ],
   },
   args: [
     {
