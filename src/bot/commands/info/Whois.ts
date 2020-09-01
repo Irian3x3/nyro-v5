@@ -5,7 +5,11 @@ import ms from "ms";
 
 @PublicCommand("whois", {
   aliases: ["whois", "userinfo", "user"],
-  description: { content: "View information on a member", usage: "[?member]" },
+  description: {
+    content: "View information on a member",
+    usage: "[?member]",
+    examples: ["", "@aesthetical"],
+  },
   args: [
     {
       id: "member",
