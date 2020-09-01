@@ -3,7 +3,7 @@ import { Command } from "discord-akairo";
 import { PublicCommand, confirm } from "#core";
 
 @PublicCommand("give", {
-  aliases: ["give"],
+  aliases: ["give", "pay"],
   description: {
     content: "Give your money to a selected user",
     usage: "[member] [amount]",
