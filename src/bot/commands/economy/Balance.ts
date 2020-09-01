@@ -7,6 +7,7 @@ import { PublicCommand } from "#core";
   description: {
     content: "Displays your or someone elses balance",
     usage: "[?member]",
+    examples: ["", "@aesthetical"],
   },
   args: [
     {
