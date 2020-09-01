@@ -5,7 +5,11 @@ import { execSync } from "child_process";
 
 @OwnerCommand("execute", {
   aliases: ["execute", "exec"],
-  description: { content: "Executes bash", usage: "[command]" },
+  description: {
+    content: "Executes bash",
+    usage: "[command]",
+    examples: ["ls"],
+  },
   args: [
     {
       id: "command",
