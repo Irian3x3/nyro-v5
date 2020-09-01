@@ -13,6 +13,7 @@ const endpoints = {
   description: {
     content: "Searches the YouTube platform for anything.",
     usage: "[query] <-page id>",
+    examples: ["How to tie a tie", "minecraft -page 2"],
   },
   args: [
     {
