@@ -29,6 +29,7 @@ import { PublicCommand } from "#core";
       },
     },
   ],
+  channel: "guild"
 })
 export default class DiceCommand extends Command {
   public async exec(
