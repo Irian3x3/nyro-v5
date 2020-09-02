@@ -19,6 +19,7 @@ import { PublicCommand } from "#core";
       },
     },
   ],
+  channel: "guild"
 })
 export default class GambleCommand extends Command {
   public async exec(message: Message, { amount }: { amount: number }) {
