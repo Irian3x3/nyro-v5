@@ -18,6 +18,7 @@ import { PublicCommand } from "#core";
       },
     },
   ],
+  channel: "guild"
 })
 export default class WithdrawCommand extends Command {
   public async exec(message: Message, { amount }: { amount: number }) {
