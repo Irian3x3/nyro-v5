@@ -19,6 +19,7 @@ import { PublicCommand, BlackJack } from "#core";
       },
     },
   ],
+  channel: "guild"
 })
 export default class BlackJackCommand extends Command {
   public async exec(message: Message, { amount }: { amount: number }) {
