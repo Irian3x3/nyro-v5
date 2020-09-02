@@ -6,6 +6,7 @@ import { PublicCommand } from "#core";
   aliases: ["work", "job"],
   description: { content: "Getchu some money" },
   cooldown: 14400000,
+  channel: "guild"
 })
 export default class WorkCommand extends Command {
   public async exec(message: Message) {
