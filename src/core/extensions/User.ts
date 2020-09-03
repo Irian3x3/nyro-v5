@@ -11,5 +11,11 @@ export default Structures.extend(
           .hasVoted(this.id)
           .then((data) => data);
       }
+
+      public get mutual() {
+        return this.client.guilds.cache.find((guild) =>
+          guild.members.cache.has(this.id)
+        );
+      }
     }
 );
