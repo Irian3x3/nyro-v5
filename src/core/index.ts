@@ -43,6 +43,11 @@ declare module "discord.js" {
   interface GuildMember {
     economy<t>();
   }
+
+  interface User {
+    mutual: Collection<string, Guild>;
+    voted: boolean;
+  }
 }
 
 String.prototype.capitalise = function () {
