@@ -20,6 +20,8 @@ We save data that the user inputs only. Specifcally, we save:
 
 And everything but not limited to data the user (you) gives to the bot.
 
+We also cache user, channel, emoji, and guild data. Once the channel is deleted, it is removed from the cache.
+
 ---
 
 ### Who we share your data with
