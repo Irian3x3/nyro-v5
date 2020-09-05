@@ -11,9 +11,10 @@ export default class GuildCreate extends Listener {
     (channel as TextChannel).send(
       new MessageEmbed()
         .setColor("#42f590")
+        .setThumbnail(guild.iconURL({ dynamic: true }))
         .setDescription([
           `${guild.name.shorten(45)} (\`${guild.id}\`).`,
-          `\nWe are now in **${this.client.guilds.cache.size}**`,
+          `\nWe are now in **${this.client.guilds.cache.size}** guilds`,
         ])
         .setFooter(`New Guild`)
         .setTimestamp(Date.now())
