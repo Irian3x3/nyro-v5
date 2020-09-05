@@ -10,7 +10,7 @@ import {
 
 import { APIOptions, API } from ".";
 
-export const PublicCommand = (id: string, options?: CommandOptions) => {
+export const PublicCommand = (id: string, options: CommandOptions = {}) => {
   return <T extends new (...args: any[]) => Command>(target: T): T => {
     return class extends target {
       constructor(...args: any[]) {
@@ -21,7 +21,7 @@ export const PublicCommand = (id: string, options?: CommandOptions) => {
   };
 };
 
-export const OwnerCommand = (id: string, options?: CommandOptions) => {
+export const OwnerCommand = (id: string, options: CommandOptions = {}) => {
   return <T extends new (...args: any[]) => Command>(target: T): T => {
     options.ownerOnly = true;
 
@@ -48,7 +48,7 @@ export const SubCommand = (id: string, arg?: ArgumentOptions[]) => {
   };
 };
 
-export const ModerationCommand = (id: string, options?: CommandOptions) => {
+export const ModerationCommand = (id: string, options: CommandOptions = {}) => {
   options.category = options.category ?? "moderation";
   options.channel = options.channel ?? "guild";
   options.cooldown = options.cooldown ?? 8500;
@@ -64,7 +64,7 @@ export const ModerationCommand = (id: string, options?: CommandOptions) => {
   };
 };
 
-export const SettingsCommand = (id: string, options?: CommandOptions) => {
+export const SettingsCommand = (id: string, options: CommandOptions = {}) => {
   options.channel = "guild";
   options.category = "settings";
 
@@ -89,7 +89,7 @@ export const Event = (id: string, options?: ListenerOptions) => {
   };
 };
 
-export const Activator = (id: string, options?: InhibitorOptions) => {
+export const Activator = (id: string, options: InhibitorOptions = {}) => {
   options.reason = options.reason ?? id;
 
   return <T extends new (...args: any[]) => Inhibitor>(target: T): T => {
