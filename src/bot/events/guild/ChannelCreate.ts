@@ -1,10 +1,12 @@
-import { Message, MessageEmbed, GuildChannel, TextChannel } from "discord.js";
+import { MessageEmbed, GuildChannel, TextChannel } from "discord.js";
 import { Listener } from "discord-akairo";
 import { Event } from "#core";
 
 @Event("channelCreate", { event: "channelCreate", emitter: "client" })
 export default class ChannelCreate extends Listener {
   public async exec(channel: GuildChannel) {
+    if (!channel.guild) return;
+
     const audit: string = this.client.settings.get(
       channel.guild.id,
       "logs.audit"
