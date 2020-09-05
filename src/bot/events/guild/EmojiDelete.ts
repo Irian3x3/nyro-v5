@@ -22,6 +22,8 @@ export default class EmojiDelete extends Listener {
       type: "EMOJI_DELETE",
     });
 
+    this.client.emojis.cache.delete(emoji.id);
+
     (channel as TextChannel).send(
       new MessageEmbed()
         .setColor("#f55e53")
