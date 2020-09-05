@@ -2,7 +2,7 @@ import { Inhibitor } from "discord-akairo";
 import { Activator } from "#core";
 import { Message } from "discord.js";
 
-@Activator("blacklistUser", { reason: "blacklistedUser" })
+@Activator("blacklistUser")
 export default class uBlacklist extends Inhibitor {
   public exec(message: Message): boolean {
     return this.client.settings
