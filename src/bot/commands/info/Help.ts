@@ -54,6 +54,9 @@ export default class HelpCommand extends Command {
         `\n**Usage**:\n${prefix[0]}${command} ${
           command.description.usage ?? ""
         }`,
+        `\n**Aliases**: ${command.aliases
+          .map((alias: string) => `\`${alias}\``)
+          .join(", ")}`,
       ])
       .setFooter(`[] = Required, [?<arg>] = Optional`);
 
