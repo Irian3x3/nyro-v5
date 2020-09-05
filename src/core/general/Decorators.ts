@@ -9,7 +9,6 @@ import {
 } from "discord-akairo";
 
 import { APIOptions, API } from ".";
-import { InhibitorHandler } from "discord-akairo";
 
 export const PublicCommand = (id: string, options?: CommandOptions) => {
   return <T extends new (...args: any[]) => Command>(target: T): T => {
@@ -79,7 +78,7 @@ export const SettingsCommand = (id: string, options?: CommandOptions) => {
   };
 };
 
-export const Event = (id: string, options: ListenerOptions) => {
+export const Event = (id: string, options?: ListenerOptions) => {
   return <T extends new (...args: any[]) => Listener>(target: T): T => {
     return class extends target {
       constructor(...args: any[]) {
@@ -90,7 +89,9 @@ export const Event = (id: string, options: ListenerOptions) => {
   };
 };
 
-export const Activator = (id: string, options: InhibitorHandler) => {
+export const Activator = (id: string, options?: InhibitorOptions) => {
+  options.reason = options.reason ?? id;
+
   return <T extends new (...args: any[]) => Inhibitor>(target: T): T => {
     return class extends target {
       constructor(...args: any[]) {
