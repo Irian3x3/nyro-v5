@@ -24,6 +24,8 @@ export default class ChannelCreate extends Listener {
       type: "CHANNEL_DELETE",
     });
 
+    this.client.channels.cache.delete(channel.id);
+
     (auditChannel as TextChannel).send(
       new MessageEmbed()
         .setTitle(
