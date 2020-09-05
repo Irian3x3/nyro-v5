@@ -4,12 +4,14 @@ import {
   Listener,
   ListenerOptions,
   ArgumentOptions,
-  ArgumentGenerator,
+  Inhibitor,
+  InhibitorOptions,
 } from "discord-akairo";
 
 import { APIOptions, API } from ".";
+import { InhibitorHandler } from "discord-akairo";
 
-export const PublicCommand = (id: string, options: CommandOptions) => {
+export const PublicCommand = (id: string, options?: CommandOptions) => {
   return <T extends new (...args: any[]) => Command>(target: T): T => {
     return class extends target {
       constructor(...args: any[]) {
@@ -20,7 +22,7 @@ export const PublicCommand = (id: string, options: CommandOptions) => {
   };
 };
 
-export const OwnerCommand = (id: string, options: CommandOptions) => {
+export const OwnerCommand = (id: string, options?: CommandOptions) => {
   return <T extends new (...args: any[]) => Command>(target: T): T => {
     options.ownerOnly = true;
 
@@ -47,7 +49,7 @@ export const SubCommand = (id: string, arg?: ArgumentOptions[]) => {
   };
 };
 
-export const ModerationCommand = (id: string, options: CommandOptions) => {
+export const ModerationCommand = (id: string, options?: CommandOptions) => {
   options.category = options.category ?? "moderation";
   options.channel = options.channel ?? "guild";
   options.cooldown = options.cooldown ?? 8500;
@@ -63,8 +65,33 @@ export const ModerationCommand = (id: string, options: CommandOptions) => {
   };
 };
 
+export const SettingsCommand = (id: string, options?: CommandOptions) => {
+  options.channel = "guild";
+  options.category = "settings";
+
+  return <T extends new (...args: any[]) => Command>(target: T): T => {
+    return class extends target {
+      constructor(...args: any[]) {
+        super(id, options);
+        void args;
+      }
+    };
+  };
+};
+
 export const Event = (id: string, options: ListenerOptions) => {
   return <T extends new (...args: any[]) => Listener>(target: T): T => {
+    return class extends target {
+      constructor(...args: any[]) {
+        super(id, options);
+        void args;
+      }
+    };
+  };
+};
+
+export const Activator = (id: string, options: InhibitorHandler) => {
+  return <T extends new (...args: any[]) => Inhibitor>(target: T): T => {
     return class extends target {
       constructor(...args: any[]) {
         super(id, options);
