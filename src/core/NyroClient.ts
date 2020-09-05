@@ -3,6 +3,7 @@ import {
   CommandHandler,
   ListenerHandler,
   Flag,
+  InhibitorHandler,
 } from "discord-akairo";
 import { GuildProvider, NyroOptions, Tags, ApiHandler } from ".";
 import { MessageEmbed } from "discord.js";
@@ -99,22 +100,27 @@ export class Nyro extends AkairoClient {
     handleEdits: true,
   });
 
+  public inhibitors: InhibitorHandler = new InhibitorHandler(this, {
+    directory: join(this.opts.outDir, "bot", "inhibitors"),
+  });
+
   public events: ListenerHandler = new ListenerHandler(this, {
     directory: join(this.opts.outDir, "bot", "events"),
   });
 
   public async run() {
     this.commands.useListenerHandler(this.events);
+    this.commands.useInhibitorHandler(this.inhibitors);
     this.events.setEmitters({
       commands: this.commands,
-      events: this.events,
+      process,
     });
 
     await this.settings.init();
 
-    this.events.loadAll();
-    this.commands.loadAll();
-    this.apis.loadAll();
+    [this.events, this.commands, this.apis, this.inhibitors].map((handler) =>
+      handler.loadAll()
+    );
 
     return this.login(this.opts.token);
   }
