@@ -1,5 +1,5 @@
 import { Message, MessageEmbed, GuildMember } from "discord.js";
-import { Command } from "discord-akairo";
+import { Command, Argument } from "discord-akairo";
 import { PublicCommand, confirm } from "#core";
 
 @PublicCommand("give", {
@@ -22,10 +22,10 @@ import { PublicCommand, confirm } from "#core";
 
     {
       id: "amount",
-      type: "number",
+      type: Argument.range("number", 1, Infinity),
       prompt: {
         start: "Please provide an amount to give to someone",
-        retry: "I need a number, please try again.",
+        retry: "I need an actual number, please try again.",
       },
     },
   ],
@@ -35,6 +35,13 @@ export default class GiveCommand extends Command {
     message: Message,
     { member, amount }: { member: GuildMember; amount: number }
   ) {
+    if (member.user.bot)
+      return message.util.send(
+        new MessageEmbed()
+          .setColor("#f55e53")
+          .setDescription("You can't give money to bots..")
+      );
+
     const donator = await message.member.economy();
     if (donator.wallet < amount)
       return message.util.send(
