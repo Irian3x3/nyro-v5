@@ -1,5 +1,5 @@
 import { Message, MessageEmbed } from "discord.js";
-import { Command } from "discord-akairo";
+import { Command, Argument } from "discord-akairo";
 import { PublicCommand, Slots } from "#core";
 
 @PublicCommand("slots", {
@@ -14,9 +14,10 @@ import { PublicCommand, Slots } from "#core";
   args: [
     {
       id: "amount",
-      type: "number",
+      type: Argument.range("number", 100, Infinity),
       prompt: {
         start: "Please provide an amount to bet",
+        retry: "I'll need a number that's atleast 100",
       },
     },
   ],
