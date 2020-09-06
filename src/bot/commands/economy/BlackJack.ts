@@ -3,7 +3,7 @@ import { Command, Argument } from "discord-akairo";
 import { PublicCommand, BlackJack } from "#core";
 
 @PublicCommand("blackjack", {
-  aliases: ["blackjack", "bj"],
+  aliases: ["blackjack", "bj", "21"],
   description: {
     content: "First player to the value of 21 wins!",
     usage: "[amount]",
