@@ -19,7 +19,7 @@ import { PublicCommand, BlackJack } from "#core";
       },
     },
   ],
-  channel: "guild"
+  channel: "guild",
 })
 export default class BlackJackCommand extends Command {
   public async exec(message: Message, { amount }: { amount: number }) {
@@ -60,7 +60,7 @@ export default class BlackJackCommand extends Command {
 
           switch (val) {
             case "won":
-              data.amount += amount;
+              data.wallet += amount;
               await data.save();
 
               valEmbed
@@ -112,9 +112,7 @@ export default class BlackJackCommand extends Command {
   }
 
   public format(val: number, type: string) {
-    return ["King", "Queen", "Jester", "Ace"].includes(type)
-      ? type.substring(0, 1)
-      : `${val}${type.substring(0, 1)}`;
+    return ["K", "Q", "J", "A"].includes(type) ? type : `${val}${type}`;
   }
 
   public embed(players: any[]) {
@@ -135,16 +133,10 @@ export default class BlackJackCommand extends Command {
       .addField(
         `Dealers Cards`,
         [
-          players[1].cards
-            .slice(0, -1)
-            .map(
-              (key) =>
-                `[\`${this.format(
-                  key.value,
-                  key.type
-                )}\`](https://google.com/) | [\`?\`](https://google.com)`
-            )
-            .join(", "),
+          `[\`${this.format(
+            players[1].cards[0].value,
+            players[1].cards[0].type
+          )}\`](https://google.com) [\`?\`](https://google.com)`,
           `\nValue: \`?\``,
         ],
         true
