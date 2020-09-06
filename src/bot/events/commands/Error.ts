@@ -1,10 +1,12 @@
-import { Message, MessageEmbed, Webhook, TextChannel } from "discord.js";
+import { Message, MessageEmbed, TextChannel } from "discord.js";
 import { Listener } from "discord-akairo";
 import { Event } from "#core";
 
 @Event("commandError", { event: "error", emitter: "commands" })
 export default class cError extends Listener {
   public async exec(error: Error, message: Message) {
+    this.client.logger.error(error.message);
+
     error.message
       .split(" ")
       .map((key) =>
