@@ -1,5 +1,5 @@
-import { Message, MessageEmbed, GuildMember } from "discord.js";
-import { Command } from "discord-akairo";
+import { Message, MessageEmbed } from "discord.js";
+import { Command, Argument } from "discord-akairo";
 import { PublicCommand } from "#core";
 
 @PublicCommand("gamble", {
@@ -12,14 +12,14 @@ import { PublicCommand } from "#core";
   args: [
     {
       id: "amount",
-      type: "number",
+      type: Argument.range("number", 100, Infinity),
       prompt: {
         start: "Please provide an amount to bet",
-        retry: "I'll need an actual number, please.",
+        retry: "I'll need a number that's atleast 100.",
       },
     },
   ],
-  channel: "guild"
+  channel: "guild",
 })
 export default class GambleCommand extends Command {
   public async exec(message: Message, { amount }: { amount: number }) {
