@@ -25,4 +25,7 @@ export class Moderation extends Model {
 
   @Column()
   public date: Date;
+
+  @Column({ nullable: true })
+  public message: string;
 }
