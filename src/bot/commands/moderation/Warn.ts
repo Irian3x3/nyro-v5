@@ -61,7 +61,7 @@ export default class WarnCommand extends Command {
       }cases reason ${caseid}\` to add a reason to this case.`;
 
     const infraction = new Moderation();
-    infraction.guild_case = { guild: message.guild.id, case: caseid + 1 };
+    infraction.guild_case = { guild: message.guild.id, case: caseid };
     infraction.guild = message.guild.id;
     infraction.user = member.user.id;
     infraction.moderator = message.author.id;
@@ -69,6 +69,7 @@ export default class WarnCommand extends Command {
     infraction.case = caseid;
     infraction.type = "warn";
     infraction.reason = reason;
+    infraction.date = new Date(Date.now());
 
     this.client.settings.set(message.guild, "moderation.case", caseid + 1);
 
