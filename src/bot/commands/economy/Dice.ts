@@ -1,4 +1,3 @@
-// 🎲
 import { Message, MessageEmbed } from "discord.js";
 import { Command, Argument } from "discord-akairo";
 import { PublicCommand } from "#core";
@@ -22,14 +21,14 @@ import { PublicCommand } from "#core";
 
     {
       id: "bet",
-      type: "number",
+      type: Argument.range("number", 100, Infinity),
       prompt: {
         start: "How much do you wanna bet on that number?",
-        retry: "I'll need a number.",
+        retry: "I'll need a number that's atleast 100",
       },
     },
   ],
-  channel: "guild"
+  channel: "guild",
 })
 export default class DiceCommand extends Command {
   public async exec(
