@@ -1,8 +1,6 @@
 interface Player {
-  id: number;
   cards: Card[];
   value: number;
-  split: number;
 }
 
 interface Card {
@@ -11,14 +9,22 @@ interface Card {
 }
 
 const cards = [
-  "Spades",
-  "Hearts",
-  "Diamonds",
-  "Clubs",
-  "Ace",
-  "Queen",
-  "Jester",
-  "King",
+  "A",
+  "Q",
+  "C",
+  "K",
+  "S",
+  "H",
+  "J",
+  "D",
+  "S",
+  "H",
+  "A",
+  "K",
+  "C",
+  "H",
+  "D",
+  "C",
 ];
 
 export class BlackJack {
@@ -27,17 +33,14 @@ export class BlackJack {
   public startGame() {
     for (let i = 0; i < 2; i++) {
       this.players[i] = {
-        id: i,
         cards: [],
         value: 0,
-        split: 0,
       };
 
-      this.players[i].cards = this.addCard();
-
-      this.players[i].cards.map(
-        (card) => (this.players[i].value += card.value)
-      );
+      this.addCard().map((card) => {
+        this.players[i].cards.push(card);
+        this.players[i].value += card.value;
+      });
     }
 
     return this.players;
@@ -47,14 +50,14 @@ export class BlackJack {
     if (action === "end") return;
 
     switch (action) {
-      case "split":
-        if (this.players[0].split >= 2) return null;
-        this.players[0].split += 1;
+      // case "split":
+      //   if (this.players[0].split >= 2) return null;
+      //   this.players[0].split += 1;
 
-        const toAdd = this.addCard();
-        this.players[0].cards.push(...toAdd);
+      //   const toAdd = this.addCard();
+      //   this.players[0].cards.push(...toAdd);
 
-        break;
+      //   break;
 
       case "stay":
         const newCard = this.addCard()[0];
@@ -80,7 +83,8 @@ export class BlackJack {
     const player = this.players[0];
     const dealer = this.players[1];
 
-    if ((player.value && dealer.value) === 21) return "tie";
+    if (player.value === dealer.value && (player.value && dealer.value) === 21)
+      return "tie";
     if (player.value > 21) return "bust";
 
     if (player.value < 21 && dealer.value === 21) return "lost";
@@ -93,14 +97,12 @@ export class BlackJack {
     const c = [];
 
     for (let i = 0; i < 2; i++) {
-      let value = Math.floor(Math.random() * 9) + 2;
+      let value = Math.floor(Math.random() * (9 - 2 + 1) + 2);
 
-      const type = this.shuffle(cards)[
-        Math.floor(Math.random() * cards.length)
-      ];
-      if (["King", "Queen", "Jester", "Ace"].includes(type)) value = 10;
+      const type = cards[Math.floor(Math.random() * cards.length)];
+      if (["K", "Q", "J", "A"].includes(type)) value = 10;
 
-      if (type === "Ace") value = 11;
+      if (type === "A") value = 11;
 
       c.push({
         value,
@@ -109,14 +111,5 @@ export class BlackJack {
     }
 
     return c;
-  }
-
-  private shuffle(array: any[]) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-
-    return array;
   }
 }
